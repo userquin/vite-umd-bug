@@ -11,11 +11,23 @@ export default defineConfig({
     },
     rollupOptions: {
       external: ["vue"],
-      output: {
+      output: [{
+        format: "esm",
+        esModule: true,
+        exports: "named",
         globals: {
           vue: "Vue"
         }
-      }
+      }, {
+        format: "umd",
+        inlineDynamicImports: true,
+        interop: "esModule",
+        exports: "named",
+        globals: {
+          vue: "Vue"
+        }
+      }],
+
     }
   },
   plugins: [vue()]
